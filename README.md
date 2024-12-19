@@ -23,31 +23,66 @@ Para executar este projeto, você precisará dos seguintes softwares instalados:
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
-## Passo a Passo
+## Executando a Aplicação Localmente
 
-1. Clone o repositório:
+Para executar a aplicação localmente, tanto o frontend quanto o backend devem ser clonados na mesma pasta. Siga os passos abaixo:
 
-   ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd <PASTA_DO_REPOSITORIO>
-   ```
+### Passos
 
-2. Construa e inicialize os containers:
+1. **Clone os repositórios**  
+   Certifique-se de que os repositórios do frontend e backend sejam clonados na mesma pasta no seu sistema local. Por exemplo:
 
    ```bash
-   docker-compose up --build
-   ```
+   mkdir desafio-gocase
+   cd desafio-gocase
+   git clone <URL_DO_REPOSITORIO_FRONTEND> frontend
+   git clone <URL_DO_REPOSITORIO_BACKEND> backend
 
-3. Acesse a aplicação nos seguintes endereços:
+Após isso, a estrutura de diretórios ficará assim:
 
-   - Backend: [http://localhost:3000](http://localhost:3000)
-   - Frontend: [http://localhost](http://localhost)
+desafio-gocase/
+├── frontend/
+└── backend/
 
-4. Para interromper e remover os containers:
+	2.	Entre na pasta do backend
+O arquivo docker-compose.yml está localizado no repositório do backend. Por isso, os comandos devem ser executados a partir dessa pasta.
 
-   ```bash
-   docker-compose down
-   ```
+cd backend
+
+
+	3.	Execute o docker-compose
+Para construir as imagens Docker e inicializar os serviços, use o comando:
+
+docker-compose up --build
+
+Isso irá:
+	•	Construir as imagens do frontend e backend.
+	•	Subir os containers do banco de dados, backend e frontend.
+	•	Configurar o Nginx para servir o frontend e rotear as requisições para o backend.
+
+	4.	Acesse a aplicação
+Após iniciar os containers, os serviços estarão disponíveis nos seguintes endereços:
+	•	Frontend: http://localhost
+	•	Backend: http://localhost:3000
+	
+    5.	Encerrar os containers
+Para parar a aplicação e remover os containers, execute:
+
+docker-compose down
+
+
+
+Resumo da Estrutura
+	•	Backend: Gerencia as regras de negócio e acessa o banco de dados. Está disponível na porta 3000.
+	•	Frontend: Servido pelo Nginx na porta padrão 80.
+	•	Banco de Dados: Serviço PostgreSQL para persistência de dados.
+
+Observações
+	•	É fundamental que os repositórios do backend e frontend estejam na mesma pasta para que os caminhos relativos funcionem corretamente.
+	•	Certifique-se de ter o Docker e Docker Compose instalados antes de iniciar o processo.
+	•	O Nginx está configurado para servir o frontend e direcionar chamadas de API para o backend.
+
+Com esses passos, sua aplicação estará pronta para rodar localmente. 
 
 ## Nginx
 
