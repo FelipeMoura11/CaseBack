@@ -40,7 +40,6 @@ Para executar este projeto, você precisará dos seguintes softwares instalados:
 
 Certifique-se de clonar os repositórios do **frontend** e **backend** na mesma pasta. A estrutura final será:
 
-```plaintext
 desafio-gocase/
 ├── frontend/
 └── backend/
