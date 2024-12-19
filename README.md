@@ -37,56 +37,64 @@ Para executar a aplicação localmente, tanto o frontend quanto o backend devem 
    cd desafio-gocase
    git clone <URL_DO_REPOSITORIO_FRONTEND> frontend
    git clone <URL_DO_REPOSITORIO_BACKEND> backend
+   ```
 
-Após isso, a estrutura de diretórios ficará assim:
+   Após isso, a estrutura de diretórios ficará assim:
 
+   ```plaintext
 desafio-gocase/
 ├── frontend/
 └── backend/
+   ```
 
-2.	Entre na pasta do backend
-O arquivo docker-compose.yml está localizado no repositório do backend. Por isso, os comandos devem ser executados a partir dessa pasta.
+2. **Entre na pasta do backend**  
+   O arquivo `docker-compose.yml` está localizado no repositório do backend. Por isso, os comandos devem ser executados a partir dessa pasta.
 
-cd backend
+   ```bash
+   cd backend
+   ```
 
+3. **Execute o docker-compose**  
+   Para construir as imagens Docker e inicializar os serviços, use o comando:
 
-3.	Execute o docker-compose
-Para construir as imagens Docker e inicializar os serviços, use o comando:
+   ```bash
+   docker-compose up --build
+   ```
 
- ``` docker-compose up --build
+   Isso irá:
+   - Construir as imagens do frontend e backend.
+   - Subir os containers do banco de dados, backend e frontend.
+   - Configurar o Nginx para servir o frontend e rotear as requisições para o backend.
 
-Isso irá:
-	•	Construir as imagens do frontend e backend.
-	•	Subir os containers do banco de dados, backend e frontend.
-	•	Configurar o Nginx para servir o frontend e rotear as requisições para o backend.
+4. **Acesse a aplicação**  
+   Após iniciar os containers, os serviços estarão disponíveis nos seguintes endereços:
+   - Frontend: [http://localhost](http://localhost)
+   - Backend: [http://localhost:3000](http://localhost:3000)
 
-	4.	Acesse a aplicação
-Após iniciar os containers, os serviços estarão disponíveis nos seguintes endereços:
-	•	Frontend: http://localhost
-	•	Backend: http://localhost:3000
-	
-   5.	Encerrar os containers
-Para parar a aplicação e remover os containers, execute:
+5. **Encerrar os containers**  
+   Para parar a aplicação e remover os containers, execute:
 
-``` docker-compose doen
+   ```bash
+   docker-compose down
+   ```
 
+### Resumo da Estrutura
 
+- **Backend**: Gerencia as regras de negócio e acessa o banco de dados. Está disponível na porta `3000`.
+- **Frontend**: Servido pelo Nginx na porta padrão `80`.
+- **Banco de Dados**: Serviço PostgreSQL para persistência de dados.
 
-Resumo da Estrutura
-	•	Backend: Gerencia as regras de negócio e acessa o banco de dados. Está disponível na porta 3000.
-	•	Frontend: Servido pelo Nginx na porta padrão 80.
-	•	Banco de Dados: Serviço PostgreSQL para persistência de dados.
+### Observações
 
-Observações
-	•	É fundamental que os repositórios do backend e frontend estejam na mesma pasta para que os caminhos relativos funcionem corretamente.
-	•	Certifique-se de ter o Docker e Docker Compose instalados antes de iniciar o processo.
-	•	O Nginx está configurado para servir o frontend e direcionar chamadas de API para o backend.
+- É fundamental que os repositórios do backend e frontend estejam na mesma pasta para que os caminhos relativos funcionem corretamente.
+- Certifique-se de ter o Docker e Docker Compose instalados antes de iniciar o processo.
+- O Nginx está configurado para servir o frontend e direcionar chamadas de API para o backend.
 
-Com esses passos, sua aplicação estará pronta para rodar localmente. 
+Com esses passos, sua aplicação estará pronta para rodar localmente.
 
 ## Nginx
 
-O **Nginx** desempenha um papel crucial na estrutura da aplicação, funcionando como servidor do frontend e balanceador de carga. A escolha do Nginx foi motivada pela sua eficiência no gerenciamento de requisições HTTP e pela capacidade de lidar com alto volume de tráfego com baixa utilização de recursos. 
+O **Nginx** desempenha um papel crucial na estrutura da aplicação, funcionando como servidor do frontend e balanceador de carga. A escolha do Nginx foi motivada pela sua eficiência no gerenciamento de requisições HTTP e pela capacidade de lidar com alto volume de tráfego com baixa utilização de recursos.
 
 ### Vantagens do Nginx:
 
@@ -124,5 +132,4 @@ O arquivo **docker-compose.yml** orquestra os serviços da aplicação, conectan
 
 ## Conclusão
 
-Esta arquitetura combina tecnologias modernas para oferecer uma aplicação robusta e fácil de gerenciar. Com Docker, Docker Compose e Nginx, garantimos uma implantação eficiente e uma experiência consistente tanto para desenvolvedores quanto para usuários finais. Siga o passo a passo para configurar e explorar este projeto!
-
+Esta arquitetura combina tecnologias modernas para oferecer uma aplicação robusta e fácil de gerenciar. Com Docker, Docker Compose e Nginx, garantimos uma implantação eficiente e uma experiência consistente tanto para desenvolvedores quanto para usuários finais. Siga o passo a passo para configurar e explorar este projeto
