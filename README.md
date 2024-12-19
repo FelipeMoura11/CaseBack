@@ -1,6 +1,4 @@
-Vou reorganizar e melhorar todo o conteúdo, incluindo a parte de “Estrutura do Projeto”, para garantir clareza e uma formatação mais amigável e organizada. O objetivo é ter um arquivo markdown que fique visualmente bem estruturado e que todas as seções estejam bem explicadas.
-
-Aqui está a versão aprimorada do arquivo markdown:
+Aqui está a versão ajustada, com títulos específicos para as seções de Nginx e Dockerfile, mantendo o padrão de formatação do restante do arquivo:
 
 # **Desafio Gocase**
 
@@ -16,8 +14,9 @@ Aqui está a versão aprimorada do arquivo markdown:
   - [Estrutura do Projeto](#estrutura-do-projeto)
   - [Configuração do Ambiente](#configuração-do-ambiente)
   - [Comandos Principais](#comandos-principais)
-- [Nginx](#nginx)
-- [Dockerfile](#dockerfile)
+- [Nginx e Dockerfile](#nginx-e-dockerfile)
+  - [Nginx](#nginx)
+  - [Dockerfile](#dockerfile)
 - [docker-compose.yml](#docker-composeyml)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Conclusão](#conclusão)
@@ -104,6 +103,8 @@ Para parar e remover os containers, execute o comando:
 
 docker-compose down
 
+Nginx e Dockerfile
+
 Nginx
 
 O Nginx desempenha um papel fundamental na arquitetura da aplicação. Ele é usado tanto como servidor para o conteúdo estático do frontend quanto como balanceador de carga para o backend.
@@ -145,4 +146,4 @@ A utilização de Docker, Docker Compose e Nginx proporciona uma solução efici
 
 Siga os passos mencionados e aproveite a experiência com a aplicação!
 
-Agora a estrutura do projeto e outras seções estão mais claras e bem formatadas. Usei uma formatação mais limpa e explicativa, tornando o arquivo mais fácil de ler e entender. Caso precise de mais ajustes, estou à disposição!
+Agora, a seção **Nginx e Dockerfile** está bem organizada, com os sub-títulos adequados e explicações claras sobre o papel de cada componente na aplicação. Se precisar de mais ajustes, posso ajudar!
