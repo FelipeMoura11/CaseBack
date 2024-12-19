@@ -1,5 +1,3 @@
-Aqui está o README completo e atualizado com as novas instruções:
-
 # Desafio Gocase
 
 ![Docker](https://img.shields.io/badge/Docker-Enabled-blue) ![Nginx](https://img.shields.io/badge/Nginx-Configured-green) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15--alpine-blue)
@@ -17,16 +15,24 @@ Aqui está o README completo e atualizado com as novas instruções:
 
 ## Introdução
 
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
 Este repositório contém uma aplicação composta por frontend, backend e banco de dados, desenvolvida para atender ao desafio proposto. O objetivo principal é garantir a orquestração eficiente de todos os serviços, utilizando Docker e Nginx para simplificar a configuração, execução e manutenção.
+</p>
 
 ## Requisitos
 
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
 Para executar este projeto, você precisará dos seguintes softwares instalados:
+</p>
 
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
 ## Passo a Passo
+
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
+Siga os passos abaixo para configurar e executar a aplicação:
+</p>
 
 1. Clone o repositório:
 
@@ -50,11 +56,18 @@ docker-compose down
 
 Executando a Aplicação Localmente
 
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
 Para executar a aplicação localmente, tanto o frontend quanto o backend devem ser clonados na mesma pasta. Siga os passos abaixo:
+</p>
+
 
 Passos
 	1.	Clone os repositórios
+
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
 Certifique-se de que os repositórios do frontend e backend sejam clonados na mesma pasta no seu sistema local. Por exemplo:
+</p>
+
 
 mkdir desafio-gocase
 cd desafio-gocase
@@ -69,47 +82,52 @@ desafio-gocase/
 
 
 	2.	Entre na pasta do backend
-O arquivo docker-compose.yml está localizado no repositório do backend. Por isso, os comandos devem ser executados a partir dessa pasta.
+
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
+O arquivo `docker-compose.yml` está localizado no repositório do backend. Por isso, os comandos devem ser executados a partir dessa pasta.
+</p>
+
 
 cd backend
 
 
 	3.	Execute o docker-compose
+
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
 Para construir as imagens Docker e inicializar os serviços, use o comando:
+</p>
+
 
 docker-compose up --build
 
-Isso irá:
-	•	Construir as imagens do frontend e backend.
-	•	Subir os containers do banco de dados, backend e frontend.
-	•	Configurar o Nginx para servir o frontend e rotear as requisições para o backend.
 
 	4.	Acesse a aplicação
+
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
 Após iniciar os containers, os serviços estarão disponíveis nos seguintes endereços:
-	•	Frontend: http://localhost
-	•	Backend: http://localhost:3000
+</p>
+- **Frontend**: [http://localhost](http://localhost)
+- **Backend**: [http://localhost:3000](http://localhost:3000)
+
+
+
 	5.	Encerrar os containers
+
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
 Para parar a aplicação e remover os containers, execute:
+</p>
+
 
 docker-compose down
 
 
 
-Resumo da Estrutura
-	•	Backend: Gerencia as regras de negócio e acessa o banco de dados. Está disponível na porta 3000.
-	•	Frontend: Servido pelo Nginx na porta padrão 80.
-	•	Banco de Dados: Serviço PostgreSQL para persistência de dados.
-
-Observações
-	•	É fundamental que os repositórios do backend e frontend estejam na mesma pasta para que os caminhos relativos funcionem corretamente.
-	•	Certifique-se de ter o Docker e Docker Compose instalados antes de iniciar o processo.
-	•	O Nginx está configurado para servir o frontend e direcionar chamadas de API para o backend.
-
-Com esses passos, sua aplicação estará pronta para rodar localmente. Caso tenha dúvidas, entre em contato com a equipe de desenvolvimento.
-
 Nginx
 
-O Nginx desempenha um papel crucial na estrutura da aplicação, funcionando como servidor do frontend e balanceador de carga. A escolha do Nginx foi motivada pela sua eficiência no gerenciamento de requisições HTTP e pela capacidade de lidar com alto volume de tráfego com baixa utilização de recursos.
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
+O **Nginx** desempenha um papel crucial na estrutura da aplicação, funcionando como servidor do frontend e balanceador de carga. A escolha do Nginx foi motivada pela sua eficiência no gerenciamento de requisições HTTP e pela capacidade de lidar com alto volume de tráfego com baixa utilização de recursos.
+</p>
+
 
 Vantagens do Nginx:
 	•	Serviço de conteúdo estático: Serve o frontend na porta 80, garantindo rápida entrega aos usuários finais.
@@ -118,7 +136,11 @@ Vantagens do Nginx:
 
 Dockerfile
 
-O arquivo Dockerfile do backend foi projetado para criar um ambiente de execução consistente, seguindo os passos:
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
+O arquivo **Dockerfile** do backend foi projetado para criar um ambiente de execução consistente, seguindo os passos:
+</p>
+
+
 	1.	Imagem base: Utiliza ruby:2.7.7 para garantir compatibilidade com a aplicação.
 	2.	Instalação de dependências: Instala nodejs, yarn e bibliotecas do PostgreSQL para suportar as funcionalidades do backend.
 	3.	Configuração do ambiente:
@@ -128,7 +150,11 @@ O arquivo Dockerfile do backend foi projetado para criar um ambiente de execuç�
 
 docker-compose.yml
 
-O arquivo docker-compose.yml orquestra os serviços da aplicação, conectando-os de forma integrada e eficiente:
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
+O arquivo **docker-compose.yml** orquestra os serviços da aplicação, conectando-os de forma integrada e eficiente:
+</p>
+
+
 	•	Backend:
 	•	Porta exposta: 3000:3000.
 	•	Integração com o banco de dados através de variáveis de ambiente.
@@ -142,6 +168,10 @@ O arquivo docker-compose.yml orquestra os serviços da aplicação, conectando-o
 
 Conclusão
 
+<p style="font-size: 14px; line-height: 1.6; color: #444;">
 Esta arquitetura combina tecnologias modernas para oferecer uma aplicação robusta e fácil de gerenciar. Com Docker, Docker Compose e Nginx, garantimos uma implantação eficiente e uma experiência consistente tanto para desenvolvedores quanto para usuários finais. Siga o passo a passo para configurar e explorar este projeto!
+</p>
+```
 
-Pronto para colar diretamente no seu arquivo `README.md`. Se precisar de mais algo, é só avisar!
+
+Essa versão inclui <p> com estilo embutido para melhorar a leitura e o visual do texto. Pode ser colada diretamente no arquivo README.md.
