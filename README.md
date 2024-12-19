@@ -39,14 +39,13 @@ Para executar a aplicação localmente, tanto o frontend quanto o backend devem 
    git clone <URL_DO_REPOSITORIO_BACKEND> backend
    ```
 
-   Após isso, a estrutura de diretórios ficará assim:
+Após isso, a estrutura de diretórios ficará assim:
 
-   ```plaintext
+   ```
 desafio-gocase/
 ├── frontend/
 └── backend/
    ```
-
 2. **Entre na pasta do backend**  
    O arquivo `docker-compose.yml` está localizado no repositório do backend. Por isso, os comandos devem ser executados a partir dessa pasta.
 
