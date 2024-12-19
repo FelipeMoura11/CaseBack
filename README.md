@@ -44,16 +44,16 @@ desafio-gocase/
 ├── frontend/
 └── backend/
 
-	2.	Entre na pasta do backend
+2.	Entre na pasta do backend
 O arquivo docker-compose.yml está localizado no repositório do backend. Por isso, os comandos devem ser executados a partir dessa pasta.
 
 cd backend
 
 
-	3.	Execute o docker-compose
+3.	Execute o docker-compose
 Para construir as imagens Docker e inicializar os serviços, use o comando:
 
-docker-compose up --build
+ ``` docker-compose up --build
 
 Isso irá:
 	•	Construir as imagens do frontend e backend.
@@ -65,10 +65,10 @@ Após iniciar os containers, os serviços estarão disponíveis nos seguintes en
 	•	Frontend: http://localhost
 	•	Backend: http://localhost:3000
 	
-    5.	Encerrar os containers
+   5.	Encerrar os containers
 Para parar a aplicação e remover os containers, execute:
 
-docker-compose down
+``` docker-compose doen
 
 
 
