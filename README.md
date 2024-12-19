@@ -1,149 +1,93 @@
-Aqui está a versão ajustada, com títulos específicos para as seções de Nginx e Dockerfile, mantendo o padrão de formatação do restante do arquivo:
-
-# **Desafio Gocase**
+# Desafio Gocase
 
 ![Docker](https://img.shields.io/badge/Docker-Enabled-blue) ![Nginx](https://img.shields.io/badge/Nginx-Configured-green) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15--alpine-blue)
 
----
-
-## **Índice**
+## Índice
 
 - [Introdução](#introdução)
 - [Requisitos](#requisitos)
-- [Configuração e Execução](#configuração-e-execução)
-  - [Estrutura do Projeto](#estrutura-do-projeto)
-  - [Configuração do Ambiente](#configuração-do-ambiente)
-  - [Comandos Principais](#comandos-principais)
-- [Nginx e Dockerfile](#nginx-e-dockerfile)
-  - [Nginx](#nginx)
-  - [Dockerfile](#dockerfile)
+- [Passo a Passo](#passo-a-passo)
+- [Nginx](#nginx)
+- [Dockerfile](#dockerfile)
 - [docker-compose.yml](#docker-composeyml)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Conclusão](#conclusão)
 
----
+## Introdução
 
-## **Introdução**
+Este repositório contém uma aplicação composta por frontend, backend e banco de dados, desenvolvida para atender ao desafio proposto. O objetivo principal é garantir a orquestração eficiente de todos os serviços, utilizando Docker e Nginx para simplificar a configuração, execução e manutenção.
 
-Este projeto foi desenvolvido para atender ao desafio Gocase. A solução envolve a criação de uma aplicação composta por **frontend**, **backend** e **banco de dados**. A arquitetura foi projetada utilizando **Docker** para contêinerização e **Nginx** para servir o frontend e gerenciar o tráfego da aplicação.
+## Requisitos
 
----
+Para executar este projeto, você precisará dos seguintes softwares instalados:
 
-## **Requisitos**
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
-Antes de iniciar o processo de configuração e execução, certifique-se de que os seguintes softwares estão instalados:
+## Passo a Passo
 
-- [Docker](https://www.docker.com/) - Para criar e gerenciar os containers.
-- [Docker Compose](https://docs.docker.com/compose/) - Para orquestrar múltiplos containers de forma fácil.
-
----
-
-## **Configuração e Execução**
-
-### **Estrutura do Projeto**
-
-A estrutura do projeto está organizada da seguinte forma:
-
-desafio-gocase/
-├── frontend/
-│   ├── index.html
-│   ├── app.js
-│   └── …
-├── backend/
-│   ├── server.js
-│   ├── controllers/
-│   ├── models/
-│   └── …
-└── docker-compose.yml
-
-- **frontend/**: Contém os arquivos do frontend que serão servidos pelo Nginx. Esse diretório contém o código HTML, CSS e JS necessários para a interface do usuário.
-  
-- **backend/**: Contém o código da API que vai processar as requisições e se comunicar com o banco de dados PostgreSQL. Este diretório inclui as rotas da API, controllers e modelos de dados.
-
-- **docker-compose.yml**: Arquivo responsável por orquestrar os containers e serviços necessários para rodar a aplicação, incluindo backend, frontend e banco de dados.
-
----
-
-### **Configuração do Ambiente**
-
-1. **Clone os Repositórios**
-
-   Comece clonando os repositórios do frontend e backend. Assegure-se de que os dois estão na mesma pasta:
+1. Clone o repositório:
 
    ```bash
-   mkdir desafio-gocase
-   cd desafio-gocase
-   git clone <URL_DO_REPOSITORIO_FRONTEND> frontend
-   git clone <URL_DO_REPOSITORIO_BACKEND> backend
+   git clone <URL_DO_REPOSITORIO>
+   cd <PASTA_DO_REPOSITORIO>
+   ```
 
-	2.	Configuração das Variáveis de Ambiente
-Navegue até o diretório backend e crie o arquivo .env com as variáveis necessárias para a configuração do banco de dados PostgreSQL. Exemplo:
+2. Construa e inicialize os containers:
 
-POSTGRES_USER=usuario
-POSTGRES_PASSWORD=senha
-POSTGRES_DB=nome_do_banco
+   ```bash
+   docker-compose up --build
+   ```
 
-Essas variáveis serão usadas para configurar a conexão com o banco de dados dentro do container.
+3. Acesse a aplicação nos seguintes endereços:
 
-Comandos Principais
+   - Backend: [http://localhost:3000](http://localhost:3000)
+   - Frontend: [http://localhost](http://localhost)
 
-Após realizar a configuração, siga os seguintes passos para rodar a aplicação:
-	1.	Subir os Containers
-Dentro do diretório backend, execute o seguinte comando para construir e inicializar os containers:
+4. Para interromper e remover os containers:
 
-docker-compose up --build
+   ```bash
+   docker-compose down
+   ```
 
+## Nginx
 
-	2.	Acessar a Aplicação
-Após subir os containers, você pode acessar os seguintes serviços:
-	•	Frontend: http://localhost
-	•	Backend: http://localhost:3000
-	3.	Encerrar os Containers
-Para parar e remover os containers, execute o comando:
+O **Nginx** desempenha um papel crucial na estrutura da aplicação, funcionando como servidor do frontend e balanceador de carga. A escolha do Nginx foi motivada pela sua eficiência no gerenciamento de requisições HTTP e pela capacidade de lidar com alto volume de tráfego com baixa utilização de recursos. 
 
-docker-compose down
+### Vantagens do Nginx:
 
-Nginx e Dockerfile
+- **Serviço de conteúdo estático**: Serve o frontend na porta `80`, garantindo rápida entrega aos usuários finais.
+- **Escalabilidade e desempenho**: Atua como intermediário entre o cliente e os serviços backend, otimizando a performance.
+- **Manutenção centralizada**: Consolida as requisições em um único ponto de entrada, facilitando o monitoramento e suporte.
 
-Nginx
+## Dockerfile
 
-O Nginx desempenha um papel fundamental na arquitetura da aplicação. Ele é usado tanto como servidor para o conteúdo estático do frontend quanto como balanceador de carga para o backend.
+O arquivo **Dockerfile** do backend foi projetado para criar um ambiente de execução consistente, seguindo os passos:
 
-Principais Vantagens do Nginx:
-	•	Serviço de conteúdo estático: O Nginx serve os arquivos do frontend diretamente na porta 80, proporcionando alta performance e resposta rápida.
-	•	Escalabilidade e desempenho: O Nginx é eficiente em gerenciar altas quantidades de tráfego, atuando como intermediário entre o cliente e os containers backend.
-	•	Facilidade de manutenção: Com o Nginx, temos um único ponto de entrada para as requisições, o que facilita o monitoramento e as atualizações.
+1. **Imagem base**: Utiliza `ruby:2.7.7` para garantir compatibilidade com a aplicação.
+2. **Instalação de dependências**: Instala `nodejs`, `yarn` e bibliotecas do PostgreSQL para suportar as funcionalidades do backend.
+3. **Configuração do ambiente**:
+   - Copia os arquivos do projeto para o container.
+   - Define a porta `3000` para comunicação do backend.
+   - Configura o script `entrypoint.sh` como ponto de entrada para inicialização.
 
-Dockerfile
+## docker-compose.yml
 
-O Dockerfile para o backend foi projetado para criar um ambiente de execução consistente e isolado para a aplicação. Abaixo estão os passos principais seguidos no Dockerfile:
-	1.	Imagem Base: Utiliza a imagem ruby:2.7.7 como base, garantindo que o backend tenha o ambiente adequado para rodar.
-	2.	Instalação de Dependências: No Dockerfile, instalamos o Node.js, Yarn e as dependências do PostgreSQL para garantir que o backend funcione corretamente dentro do container.
-	3.	Configuração do Ambiente: O Dockerfile também copia os arquivos necessários para o container e configura o script de inicialização do backend.
+O arquivo **docker-compose.yml** orquestra os serviços da aplicação, conectando-os de forma integrada e eficiente:
 
-docker-compose.yml
+- **Backend**:
+  - Porta exposta: `3000:3000`.
+  - Integração com o banco de dados através de variáveis de ambiente.
+  - Dependência explícita do serviço `db` para garantir inicialização ordenada.
 
-O docker-compose.yml é responsável por orquestrar os containers da aplicação. Ele define como o backend, frontend e banco de dados irão interagir entre si.
-	•	Serviço de Backend:
-	•	A aplicação backend será executada na porta 3000.
-	•	O serviço depende do banco de dados, garantindo que o PostgreSQL seja iniciado primeiro.
-	•	Banco de Dados PostgreSQL:
-	•	A aplicação utiliza o PostgreSQL, que estará acessível pela porta 5432.
-	•	Os dados são persistidos através de volumes, garantindo que não sejam perdidos quando o container for removido.
-	•	Frontend:
-	•	O frontend é servido diretamente pelo Nginx, na porta 80.
+- **Banco de Dados (PostgreSQL)**:
+  - Porta exposta: `5432:5432`.
+  - Volume configurado para persistir os dados armazenados.
 
-Tecnologias Utilizadas
-	•	Frontend: Framework moderno de JavaScript (React, Vue, etc.) para criação de interfaces dinâmicas e responsivas.
-	•	Backend: API construída com Node.js ou Ruby (dependendo da implementação) para processar requisições e interagir com o banco de dados.
-	•	Banco de Dados: PostgreSQL como sistema de gerenciamento de banco de dados relacional.
-	•	Docker: Para contêinerização da aplicação, garantindo um ambiente de execução isolado e portátil.
-	•	Nginx: Para servir o frontend e fazer balanceamento de carga entre os containers.
+- **Frontend**:
+  - Porta exposta: `80:80`.
+  - Configurado para ser servido diretamente via Nginx.
 
-Conclusão
+## Conclusão
 
-A utilização de Docker, Docker Compose e Nginx proporciona uma solução eficiente e escalável para o desafio proposto. A arquitetura garante uma aplicação robusta, com containers isolados, que pode ser facilmente escalada e mantida. A execução local é simples e rápida, bastando seguir o passo a passo fornecido neste documento.
+Esta arquitetura combina tecnologias modernas para oferecer uma aplicação robusta e fácil de gerenciar. Com Docker, Docker Compose e Nginx, garantimos uma implantação eficiente e uma experiência consistente tanto para desenvolvedores quanto para usuários finais. Siga o passo a passo para configurar e explorar este projeto!
 
-Siga os passos mencionados e aproveite a experiência com a aplicação!
-
-Agora, a seção **Nginx e Dockerfile** está bem organizada, com os sub-títulos adequados e explicações claras sobre o papel de cada componente na aplicação. Se precisar de mais ajustes, posso ajudar!
