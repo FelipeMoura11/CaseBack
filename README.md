@@ -1,177 +1,194 @@
-# Desafio Gocase
+# **Desafio Gocase**
 
 ![Docker](https://img.shields.io/badge/Docker-Enabled-blue) ![Nginx](https://img.shields.io/badge/Nginx-Configured-green) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15--alpine-blue)
 
-## Índice
+---
+
+## **Índice**
 
 - [Introdução](#introdução)
 - [Requisitos](#requisitos)
-- [Passo a Passo](#passo-a-passo)
-- [Executando a Aplicação Localmente](#executando-a-aplicação-localmente)
+- [Configuração e Execução](#configuração-e-execução)
+  - [Estrutura do Projeto](#estrutura-do-projeto)
+  - [Configuração do Ambiente](#configuração-do-ambiente)
+  - [Comandos Principais](#comandos-principais)
 - [Nginx](#nginx)
 - [Dockerfile](#dockerfile)
 - [docker-compose.yml](#docker-composeyml)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Conclusão](#conclusão)
 
-## Introdução
+---
 
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-Este repositório contém uma aplicação composta por frontend, backend e banco de dados, desenvolvida para atender ao desafio proposto. O objetivo principal é garantir a orquestração eficiente de todos os serviços, utilizando Docker e Nginx para simplificar a configuração, execução e manutenção.
-</p>
+## **Introdução**
 
-## Requisitos
+Este projeto implementa uma solução completa composta por **frontend**, **backend** e **banco de dados**, utilizando **Docker** e **Nginx** para orquestração e configuração. A arquitetura foi projetada para ser robusta, escalável e de fácil manutenção.
 
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-Para executar este projeto, você precisará dos seguintes softwares instalados:
-</p>
+---
+
+## **Requisitos**
+
+Antes de começar, garanta que os seguintes softwares estão instalados no seu sistema:
 
 - [Docker](https://www.docker.com/)
 - [Docker Compose](https://docs.docker.com/compose/)
 
-## Passo a Passo
+---
 
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-Siga os passos abaixo para configurar e executar a aplicação:
-</p>
+## **Configuração e Execução**
 
-1. Clone o repositório:
+### **Estrutura do Projeto**
 
-   ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd <PASTA_DO_REPOSITORIO>
+Certifique-se de clonar os repositórios do **frontend** e do **backend** na mesma pasta. A estrutura final será:
 
-	2.	Construa e inicialize os containers:
+```plaintext
+desafio-gocase/
+├── frontend/
+└── backend/
 
-docker-compose up --build
-
-
-	3.	Acesse a aplicação nos seguintes endereços:
-	•	Backend: http://localhost:3000
-	•	Frontend: http://localhost
-	4.	Para interromper e remover os containers:
-
-docker-compose down
-
-
-
-Executando a Aplicação Localmente
-
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-Para executar a aplicação localmente, tanto o frontend quanto o backend devem ser clonados na mesma pasta. Siga os passos abaixo:
-</p>
-
-
-Passos
-	1.	Clone os repositórios
-
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-Certifique-se de que os repositórios do frontend e backend sejam clonados na mesma pasta no seu sistema local. Por exemplo:
-</p>
-
+Configuração do Ambiente
+	1.	Clonar os Repositórios
+Clone os repositórios do frontend e backend na mesma pasta:
 
 mkdir desafio-gocase
 cd desafio-gocase
 git clone <URL_DO_REPOSITORIO_FRONTEND> frontend
 git clone <URL_DO_REPOSITORIO_BACKEND> backend
 
-Após isso, a estrutura de diretórios ficará assim:
 
-desafio-gocase/
-├── frontend/
-└── backend/
-
-
-	2.	Entre na pasta do backend
-
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-O arquivo `docker-compose.yml` está localizado no repositório do backend. Por isso, os comandos devem ser executados a partir dessa pasta.
-</p>
-
+	2.	Entrar na Pasta do Backend
+Todos os comandos principais para subir a aplicação serão executados na pasta backend, onde está o arquivo docker-compose.yml:
 
 cd backend
 
 
-	3.	Execute o docker-compose
+	3.	Configurar Variáveis de Ambiente
+Crie ou edite o arquivo .env com as seguintes variáveis:
 
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-Para construir as imagens Docker e inicializar os serviços, use o comando:
-</p>
+POSTGRES_USER=usuario
+POSTGRES_PASSWORD=senha
+POSTGRES_DB=nome_do_banco
 
+
+
+Comandos Principais
+	1.	Construir e Subir os Containers
+Execute o comando abaixo para construir as imagens Docker e iniciar os serviços:
 
 docker-compose up --build
 
 
-	4.	Acesse a aplicação
-
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-Após iniciar os containers, os serviços estarão disponíveis nos seguintes endereços:
-</p>
-- **Frontend**: [http://localhost](http://localhost)
-- **Backend**: [http://localhost:3000](http://localhost:3000)
-
-
-
-	5.	Encerrar os containers
-
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-Para parar a aplicação e remover os containers, execute:
-</p>
-
+	2.	Acessar os Serviços
+	•	Frontend: http://localhost
+	•	Backend: http://localhost:3000
+	3.	Parar e Remover os Containers
+Para parar os containers e limpar o ambiente:
 
 docker-compose down
 
 
+	4.	Logs dos Containers
+Para acompanhar os logs de execução:
+
+docker-compose logs -f
 
 Nginx
 
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-O **Nginx** desempenha um papel crucial na estrutura da aplicação, funcionando como servidor do frontend e balanceador de carga. A escolha do Nginx foi motivada pela sua eficiência no gerenciamento de requisições HTTP e pela capacidade de lidar com alto volume de tráfego com baixa utilização de recursos.
-</p>
+O Nginx foi configurado para:
+	•	Servir o frontend na porta 80.
+	•	Redirecionar requisições ao backend na porta 3000.
 
+Configuração
 
-Vantagens do Nginx:
-	•	Serviço de conteúdo estático: Serve o frontend na porta 80, garantindo rápida entrega aos usuários finais.
-	•	Escalabilidade e desempenho: Atua como intermediário entre o cliente e os serviços backend, otimizando a performance.
-	•	Manutenção centralizada: Consolida as requisições em um único ponto de entrada, facilitando o monitoramento e suporte.
+Exemplo do arquivo de configuração:
+
+server {
+    listen 80;
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+        try_files $uri /index.html;
+    }
+
+    location /api/ {
+        proxy_pass http://backend:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
 
 Dockerfile
 
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-O arquivo **Dockerfile** do backend foi projetado para criar um ambiente de execução consistente, seguindo os passos:
-</p>
-
-
-	1.	Imagem base: Utiliza ruby:2.7.7 para garantir compatibilidade com a aplicação.
-	2.	Instalação de dependências: Instala nodejs, yarn e bibliotecas do PostgreSQL para suportar as funcionalidades do backend.
-	3.	Configuração do ambiente:
-	•	Copia os arquivos do projeto para o container.
-	•	Define a porta 3000 para comunicação do backend.
-	•	Configura o script entrypoint.sh como ponto de entrada para inicialização.
+O Dockerfile foi configurado para garantir um ambiente consistente:
+	•	Imagem base: ruby:2.7.7
+	•	Dependências: Instalação de nodejs, yarn e bibliotecas do PostgreSQL.
+	•	Configuração: Porta 3000 exposta e script entrypoint.sh definido.
 
 docker-compose.yml
 
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-O arquivo **docker-compose.yml** orquestra os serviços da aplicação, conectando-os de forma integrada e eficiente:
-</p>
+O arquivo docker-compose.yml orquestra os serviços frontend, backend e banco de dados.
 
-
-	•	Backend:
-	•	Porta exposta: 3000:3000.
-	•	Integração com o banco de dados através de variáveis de ambiente.
-	•	Dependência explícita do serviço db para garantir inicialização ordenada.
-	•	Banco de Dados (PostgreSQL):
-	•	Porta exposta: 5432:5432.
-	•	Volume configurado para persistir os dados armazenados.
+Serviços
 	•	Frontend:
-	•	Porta exposta: 80:80.
-	•	Configurado para ser servido diretamente via Nginx.
+	•	Porta: 80:80
+	•	Servido pelo Nginx.
+	•	Backend:
+	•	Porta: 3000:3000
+	•	Conectado ao banco de dados.
+	•	Banco de Dados:
+	•	Porta: 5432:5432
+	•	Volume para persistência de dados.
+
+Exemplo do Arquivo
+
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: ../frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://usuario:senha@db:5432/nome_do_banco
+
+  db:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: nome_do_banco
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+
+Tecnologias Utilizadas
+	•	Docker: Containerização de serviços.
+	•	Docker Compose: Orquestração de múltiplos containers.
+	•	Nginx: Servidor HTTP e proxy reverso.
+	•	PostgreSQL: Banco de dados relacional.
 
 Conclusão
 
-<p style="font-size: 14px; line-height: 1.6; color: #444;">
-Esta arquitetura combina tecnologias modernas para oferecer uma aplicação robusta e fácil de gerenciar. Com Docker, Docker Compose e Nginx, garantimos uma implantação eficiente e uma experiência consistente tanto para desenvolvedores quanto para usuários finais. Siga o passo a passo para configurar e explorar este projeto!
-</p>
-```
+A arquitetura proposta é moderna e eficiente, utilizando ferramentas que garantem escalabilidade e facilidade de manutenção. O uso do Docker e Nginx permite que o ambiente seja configurado e executado rapidamente. Siga os passos descritos para executar o projeto localmente e aproveite a experiência completa.
 
-
-Essa versão inclui <p> com estilo embutido para melhorar a leitura e o visual do texto. Pode ser colada diretamente no arquivo README.md.
+### Melhorias:
+- **Separação visual**: Divisão clara entre as seções com uso de linhas (`---`) e formatação consistente.
+- **Estrutura refinada**: Texto mais organizado e linguagem fluida.
+- **Comando em destaque**: Formatação em código para maior clareza.
+- **Fluxo natural**: Explicações conectadas e simplificadas.
