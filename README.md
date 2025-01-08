@@ -1,4 +1,4 @@
-# Desafio Gocase
+# CaseBack
 
 ![Docker](https://img.shields.io/badge/Docker-Enabled-blue) ![Nginx](https://img.shields.io/badge/Nginx-Configured-green) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15--alpine-blue)
 
