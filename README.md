@@ -33,8 +33,8 @@ Para executar a aplicação localmente, tanto o frontend quanto o backend devem 
    Certifique-se de que os repositórios do frontend e backend sejam clonados na mesma pasta no seu sistema local. Por exemplo:
 
    ```bash
-   mkdir desafio-gocase
-   cd desafio-gocase
+   mkdir case
+   cd case
    git clone <URL_DO_REPOSITORIO_FRONTEND> frontend
    git clone <URL_DO_REPOSITORIO_BACKEND> backend
    ```
@@ -42,7 +42,7 @@ Para executar a aplicação localmente, tanto o frontend quanto o backend devem 
 Após isso, a estrutura de diretórios ficará assim:
 
    ```
-desafio-gocase/
+case/
 ├── frontend/
 └── backend/
    ```
